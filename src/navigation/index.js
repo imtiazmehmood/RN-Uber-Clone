@@ -5,11 +5,14 @@ import {navigationRef} from './NavigationService';
 import HomeScreen from '../screens/HomeScreen';
 import MapScreen from '../screens/MapScreen';
 import EatsScreen from '../screens/EatsScreen';
+import NavigateCard from '../components/NavigateCard';
 const RootNavigationStack = () => {
   const Stack = createStackNavigator();
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator
+        screenOptions={{headerShown: false}}
+        initialRouteName="HomeScreen">
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}

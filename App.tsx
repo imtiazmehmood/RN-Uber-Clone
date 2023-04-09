@@ -9,18 +9,20 @@ import React from 'react';
 import {store} from './store';
 import {Provider} from 'react-redux';
 import 'react-native-gesture-handler';
-import {StyleSheet} from 'react-native';
-import HomeScreen from './src/screens/HomeScreen';
+import {KeyboardAvoidingView, Platform, StyleSheet} from 'react-native';
 import NavigationProvider from './src/navigation';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 function App(): JSX.Element {
   return (
     <Provider store={store}>
-      <NavigationProvider>
-        <SafeAreaProvider>
-          <HomeScreen />
-        </SafeAreaProvider>
-      </NavigationProvider>
+      <SafeAreaProvider>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={{flex: 1}}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? -64 : 0}>
+          <NavigationProvider />
+        </KeyboardAvoidingView>
+      </SafeAreaProvider>
     </Provider>
   );
 }
